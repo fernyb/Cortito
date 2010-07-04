@@ -17,7 +17,8 @@
 		C4C4198211E03E9A00EB62B2 /* CortitoPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C4197A11E03E9A00EB62B2 /* CortitoPlugin.m */; };
 		C4C4198311E03E9A00EB62B2 /* CortitoService.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C4197C11E03E9A00EB62B2 /* CortitoService.m */; };
 		C4C419ED11E0544200EB62B2 /* Glass.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C4C419EC11E0544200EB62B2 /* Glass.aiff */; };
-		C4C41A2611E059FE00EB62B2 /* Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C41A2511E059FE00EB62B2 /* Swizzle.m */; };
+		C4C41A3B11E05CED00EB62B2 /* CortitoPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C41A3A11E05CED00EB62B2 /* CortitoPreferences.m */; };
+		C4C41AA711E0685C00EB62B2 /* AdvancedPreferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C4C41AA611E0685C00EB62B2 /* AdvancedPreferences.tiff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,8 +48,9 @@
 		C4C4197B11E03E9A00EB62B2 /* CortitoService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CortitoService.h; sourceTree = "<group>"; };
 		C4C4197C11E03E9A00EB62B2 /* CortitoService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CortitoService.m; sourceTree = "<group>"; };
 		C4C419EC11E0544200EB62B2 /* Glass.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Glass.aiff; sourceTree = "<group>"; };
-		C4C41A2411E059FE00EB62B2 /* Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Swizzle.h; sourceTree = "<group>"; };
-		C4C41A2511E059FE00EB62B2 /* Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Swizzle.m; sourceTree = "<group>"; };
+		C4C41A3911E05CED00EB62B2 /* CortitoPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CortitoPreferences.h; sourceTree = "<group>"; };
+		C4C41A3A11E05CED00EB62B2 /* CortitoPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CortitoPreferences.m; sourceTree = "<group>"; };
+		C4C41AA611E0685C00EB62B2 /* AdvancedPreferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = AdvancedPreferences.tiff; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +90,7 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C4C41AA511E0685C00EB62B2 /* images */,
 				C4C419EB11E0544200EB62B2 /* sounds */,
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
@@ -137,8 +140,8 @@
 				C4C4197A11E03E9A00EB62B2 /* CortitoPlugin.m */,
 				C4C4197B11E03E9A00EB62B2 /* CortitoService.h */,
 				C4C4197C11E03E9A00EB62B2 /* CortitoService.m */,
-				C4C41A2411E059FE00EB62B2 /* Swizzle.h */,
-				C4C41A2511E059FE00EB62B2 /* Swizzle.m */,
+				C4C41A3911E05CED00EB62B2 /* CortitoPreferences.h */,
+				C4C41A3A11E05CED00EB62B2 /* CortitoPreferences.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -170,6 +173,14 @@
 				C4C419EC11E0544200EB62B2 /* Glass.aiff */,
 			);
 			path = sounds;
+			sourceTree = "<group>";
+		};
+		C4C41AA511E0685C00EB62B2 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				C4C41AA611E0685C00EB62B2 /* AdvancedPreferences.tiff */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,6 +228,7 @@
 			files = (
 				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
 				C4C419ED11E0544200EB62B2 /* Glass.aiff in Resources */,
+				C4C41AA711E0685C00EB62B2 /* AdvancedPreferences.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +246,7 @@
 				C4C4198111E03E9A00EB62B2 /* ASINetworkQueue.m in Sources */,
 				C4C4198211E03E9A00EB62B2 /* CortitoPlugin.m in Sources */,
 				C4C4198311E03E9A00EB62B2 /* CortitoService.m in Sources */,
-				C4C41A2611E059FE00EB62B2 /* Swizzle.m in Sources */,
+				C4C41A3B11E05CED00EB62B2 /* CortitoPreferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

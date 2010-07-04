@@ -18,7 +18,6 @@
 + (CortitoPlugin *)sharedInstance;
 - (void)installMenu;
 - (void)registerNotifications;
-- (void)installPreferences;
 
 - (void)createShortURL:(id)sender;
 - (void)didCreateShortURL:(NSNotification *)aNotification;

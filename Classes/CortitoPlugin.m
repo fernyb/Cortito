@@ -8,7 +8,8 @@
 
 #import "CortitoPlugin.h"
 #import "CortitoService.h"
-#import "Swizzle.h"
+#import "CortitoPreferences.h"
+
 
 @implementation CortitoPlugin
 
@@ -17,7 +18,7 @@
   CortitoPlugin * plugin = [[self class] sharedInstance];
   [plugin installMenu];
   [plugin registerNotifications];
-  [plugin installPreferences];
+  [CortitoPreferences install];
 }
 
 
@@ -59,11 +60,6 @@
   // Add MenuItem to the Menu
   [newMenu addItem:newItem];
   [newItem release];
-}
-
-- (void)installPreferences
-{
-  
 }
 
 - (void)createShortURL:(id)sender
