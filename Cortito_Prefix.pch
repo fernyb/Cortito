@@ -8,3 +8,6 @@
 
 #define kCorititoDidCreateShortUrl @"kCorititoDidCreateShortUrl"
 #define kCorititoDidFailToCreateShortUrl @"kCorititoDidFailToCreateShortUrl"
+
+#define DEFAULT_SERVICE_URL @"http://akos.ma/"
+#define DEFAULT_SERVICE_URL_KEY @"cortitoServiceURL"

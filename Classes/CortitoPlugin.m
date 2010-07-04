@@ -10,6 +10,8 @@
 #import "CortitoService.h"
 #import "CortitoPreferencesModule.h"
 
+#define CORTITO_MENU_ITEM_TAG 1000
+
 
 @implementation CortitoPlugin
 
@@ -44,7 +46,10 @@
   NSMenu * newMenu;
   
   newItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Cortito" action:NULL keyEquivalent:@""];
+  [newItem setTag:CORTITO_MENU_ITEM_TAG];
+  
   newMenu = [[NSMenu allocWithZone:[NSMenu menuZone]] initWithTitle:@"Cortito"];
+  [newMenu setAutoenablesItems:NO];
   [newItem setSubmenu:newMenu];
   [newMenu release];
   
@@ -56,10 +61,24 @@
   newItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Create Short URL" action:NULL keyEquivalent:@""];
   [newItem setTarget:self];
   [newItem setAction:@selector(createShortURL:)];
-  
+ 
   // Add MenuItem to the Menu
   [newMenu addItem:newItem];
   [newItem release];
+}
+
+- (void)disableCreateShortURL
+{
+  NSMenuItem * menuItem = [[NSApp mainMenu] itemWithTag:CORTITO_MENU_ITEM_TAG];
+  NSMenuItem * subMenuItem = [[menuItem submenu] itemAtIndex:0];
+  [subMenuItem setEnabled:NO];
+}
+
+- (void)enableCreateShortURL
+{
+  NSMenuItem * menuItem = [[NSApp mainMenu] itemWithTag:CORTITO_MENU_ITEM_TAG];
+  NSMenuItem * subMenuItem = [[menuItem submenu] itemAtIndex:0];
+  [subMenuItem setEnabled:YES];
 }
 
 - (void)createShortURL:(id)sender
@@ -73,6 +92,8 @@
     keyURL = [[locationTextField performSelector:@selector(stringValue)] copy];
     
     if (!service) service = [[CortitoService alloc] init];
+    
+    [self disableCreateShortURL];
     [service shorten:[NSURL URLWithString:keyURL]];
   }
 }
@@ -113,12 +134,13 @@
 
 - (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
-  // Not needed now....
+  [self enableCreateShortURL];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
+  [[CortitoPreferencesModule sharedInstance] release];
   [[[self class] sharedInstance] release];
 }
 

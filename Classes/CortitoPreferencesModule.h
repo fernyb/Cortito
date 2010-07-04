@@ -12,6 +12,7 @@
 @interface CortitoPreferencesModule : NSObject {
   IBOutlet NSView * prefview;
   IBOutlet NSTextField * serviceTextField;
+  NSString * serviceURL;
 }
 
 + (void)install;

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		C45D791911E0E66200C9CBA4 /* PreferenceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C45D791811E0E66200C9CBA4 /* PreferenceView.xib */; };
+		C45D793211E0F3FB00C9CBA4 /* cortito.png in Resources */ = {isa = PBXBuildFile; fileRef = C45D793111E0F3FB00C9CBA4 /* cortito.png */; };
 		C4C4197D11E03E9A00EB62B2 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C4196D11E03E9A00EB62B2 /* ASIDownloadCache.m */; };
 		C4C4197E11E03E9A00EB62B2 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C4196F11E03E9A00EB62B2 /* ASIFormDataRequest.m */; };
 		C4C4197F11E03E9A00EB62B2 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C4197111E03E9A00EB62B2 /* ASIHTTPRequest.m */; };
@@ -18,8 +20,6 @@
 		C4C4198311E03E9A00EB62B2 /* CortitoService.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C4197C11E03E9A00EB62B2 /* CortitoService.m */; };
 		C4C419ED11E0544200EB62B2 /* Glass.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C4C419EC11E0544200EB62B2 /* Glass.aiff */; };
 		C4C41A3B11E05CED00EB62B2 /* CortitoPreferencesModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C41A3A11E05CED00EB62B2 /* CortitoPreferencesModule.m */; };
-		C4C41AA711E0685C00EB62B2 /* AdvancedPreferences.tiff in Resources */ = {isa = PBXBuildFile; fileRef = C4C41AA611E0685C00EB62B2 /* AdvancedPreferences.tiff */; };
-		C4C41AFD11E0716900EB62B2 /* PreferenceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C4C41AFC11E0716900EB62B2 /* PreferenceView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +30,8 @@
 		32DBCF630370AF2F00C91783 /* Cortito_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cortito_Prefix.pch; sourceTree = "<group>"; };
 		8D5B49B6048680CD000E48DA /* Cortito.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Cortito.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C45D791811E0E66200C9CBA4 /* PreferenceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferenceView.xib; sourceTree = "<group>"; };
+		C45D793111E0F3FB00C9CBA4 /* cortito.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cortito.png; sourceTree = "<group>"; };
 		C4C4196B11E03E9A00EB62B2 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
 		C4C4196C11E03E9A00EB62B2 /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDownloadCache.h; sourceTree = "<group>"; };
 		C4C4196D11E03E9A00EB62B2 /* ASIDownloadCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDownloadCache.m; sourceTree = "<group>"; };
@@ -51,8 +53,6 @@
 		C4C419EC11E0544200EB62B2 /* Glass.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = Glass.aiff; sourceTree = "<group>"; };
 		C4C41A3911E05CED00EB62B2 /* CortitoPreferencesModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CortitoPreferencesModule.h; sourceTree = "<group>"; };
 		C4C41A3A11E05CED00EB62B2 /* CortitoPreferencesModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CortitoPreferencesModule.m; sourceTree = "<group>"; };
-		C4C41AA611E0685C00EB62B2 /* AdvancedPreferences.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = AdvancedPreferences.tiff; sourceTree = "<group>"; };
-		C4C41AFC11E0716900EB62B2 /* PreferenceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferenceView.xib; sourceTree = "<group>"; };
 		D2F7E65807B2D6F200F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -92,11 +92,11 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C45D791711E0E66200C9CBA4 /* views */,
 				C4C41AA511E0685C00EB62B2 /* images */,
 				C4C419EB11E0544200EB62B2 /* sounds */,
 				8D5B49B7048680CD000E48DA /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
-				C4C41AFC11E0716900EB62B2 /* PreferenceView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -133,6 +133,14 @@
 				32DBCF630370AF2F00C91783 /* Cortito_Prefix.pch */,
 			);
 			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		C45D791711E0E66200C9CBA4 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				C45D791811E0E66200C9CBA4 /* PreferenceView.xib */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 		C4C4196911E03E9A00EB62B2 /* Classes */ = {
@@ -181,7 +189,7 @@
 		C4C41AA511E0685C00EB62B2 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				C4C41AA611E0685C00EB62B2 /* AdvancedPreferences.tiff */,
+				C45D793111E0F3FB00C9CBA4 /* cortito.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -231,8 +239,8 @@
 			files = (
 				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
 				C4C419ED11E0544200EB62B2 /* Glass.aiff in Resources */,
-				C4C41AA711E0685C00EB62B2 /* AdvancedPreferences.tiff in Resources */,
-				C4C41AFD11E0716900EB62B2 /* PreferenceView.xib in Resources */,
+				C45D791911E0E66200C9CBA4 /* PreferenceView.xib in Resources */,
+				C45D793211E0F3FB00C9CBA4 /* cortito.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

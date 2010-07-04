@@ -13,7 +13,8 @@
 
 + (NSString *)server_url
 {
-  return @"http://localhost:3000/";
+  NSString * serviceurl = [[NSUserDefaults standardUserDefaults] objectForKey:@"cortitoServiceURL"];
+  return serviceurl;
 }
 
 - (void)shorten:(NSURL *)originalURL
@@ -24,7 +25,18 @@
                                                                 (CFStringRef)@";/?:@&=+$,", 
                                                                 kCFStringEncodingUTF8);
   
-  NSString *completeString = [NSString stringWithFormat:@"%@?url=%@", [[self class] server_url], encoded];
+  NSString * url = [[self class] server_url];
+  if([url hasPrefix:@"http://"] == NO) {
+    NSMutableDictionary * errorDetail = [NSMutableDictionary dictionary];
+    [errorDetail setValue:@"Invalid Web Service URL" forKey:NSLocalizedDescriptionKey];
+    
+    NSError * error = [NSError errorWithDomain:@"net.fernyb.cortito" code:100 userInfo:errorDetail];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCorititoDidFailToCreateShortUrl object:error];
+    return;
+  }
+  
+  NSString *completeString = [NSString stringWithFormat:@"%@?url=%@", url, encoded];
   CFRelease(encoded);
   
   ASIHTTPRequest * request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:completeString]];

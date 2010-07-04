@@ -56,10 +56,12 @@
   return self;
 }
 
-
 - (NSImage *)imageForPreferenceNamed:(NSString *)sender
 {
-  return [NSImage imageNamed:@"AdvancedPreferences.tiff"];
+  NSURL * url    = [[NSBundle bundleForClass:[self class]] URLForImageResource:@"cortito.png"];
+  NSImage * icon = [[NSImage alloc] initWithContentsOfURL:url];
+  
+  return [icon autorelease];
 }
 
 - (NSView *)viewForPreferenceNamed:(NSString *)sender
@@ -74,8 +76,18 @@
 
 - (void)initializeFromDefaults
 {
+  serviceURL = [[NSUserDefaults standardUserDefaults] objectForKey:DEFAULT_SERVICE_URL_KEY];
+  if(!serviceURL) {
+    [[NSUserDefaults standardUserDefaults] setObject:DEFAULT_SERVICE_URL forKey:DEFAULT_SERVICE_URL_KEY];
+    serviceURL = [[NSUserDefaults standardUserDefaults] objectForKey:DEFAULT_SERVICE_URL_KEY];
+  }
+  
+  if(![NSURL URLWithString:serviceURL]) {
+    serviceURL = @"";
+  }
+  
   if(serviceTextField) {
-    [serviceTextField setStringValue:@"http://localhost:3000/"];
+    [serviceTextField setStringValue:serviceURL];
   }
 }
 
@@ -91,12 +103,15 @@
 
 - (BOOL)hasChangesPending
 {
+  if([[serviceTextField stringValue] isEqualToString:serviceURL]) {
+    return NO;
+  }
   return YES;
 }
 
 - (void)saveChanges
 {
-  NSLog(@"Save Changes");
+  [[NSUserDefaults standardUserDefaults] setObject:[serviceTextField stringValue] forKey:DEFAULT_SERVICE_URL_KEY];
 }
 
 - (NSSize)minSize
@@ -113,6 +128,15 @@
 {
   return YES;
 }
+
+- (void)dealloc
+{
+  [prefview release];
+  [serviceTextField release];
+  [serviceURL release];
+  [super dealloc];
+}
+
 
 @end
 
