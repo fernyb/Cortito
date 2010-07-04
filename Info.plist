@@ -35,5 +35,9 @@
 			<string>6531.21.10</string>
 		</dict>
 	</array>
+	<key>SUFeedURL</key>
+	<string>http://localhost:3000/appcasts/cortito.xml</string>
+	<key>SUEnableAutomaticChecks</key>
+	<string>YES</string>
 </dict>
 </plist>

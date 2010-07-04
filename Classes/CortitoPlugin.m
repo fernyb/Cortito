@@ -6,6 +6,7 @@
 //  Copyright 2010 Fernando Barajas. All rights reserved.
 //
 
+#import <Sparkle/Sparkle.h>
 #import "CortitoPlugin.h"
 #import "CortitoService.h"
 #import "CortitoPreferencesModule.h"
@@ -61,10 +62,21 @@
   newItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Create Short URL" action:NULL keyEquivalent:@""];
   [newItem setTarget:self];
   [newItem setAction:@selector(createShortURL:)];
- 
-  // Add MenuItem to the Menu
   [newMenu addItem:newItem];
   [newItem release];
+  
+  newItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Check For Updates" action:NULL keyEquivalent:@""];
+  [newItem setTarget:self];
+  [newItem setAction:@selector(checkForUpdates:)];
+  [newMenu addItem:newItem];
+  
+  [newItem release];
+}
+
+- (void)checkForUpdates:(id)sender
+{
+  SUUpdater * sparkle = [SUUpdater updaterForBundle:[NSBundle bundleForClass:[self class]]];
+  [sparkle resetUpdateCycle];
 }
 
 - (void)disableCreateShortURL

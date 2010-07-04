@@ -17,6 +17,7 @@
 
 + (CortitoPlugin *)sharedInstance;
 - (void)installMenu;
+- (void)checkForUpdates:(id)sender;
 - (void)disableCreateShortURL;
 - (void)enableCreateShortURL;
 - (void)registerNotifications;
