@@ -9,20 +9,26 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface CortitoPreferences : NSObject {
-
+@interface CortitoPreferencesModule : NSObject {
+  IBOutlet NSView * prefview;
+  IBOutlet NSTextField * serviceTextField;
 }
 
 + (void)install;
 + (NSString *)preferencesPanelName;
-+ (CortitoPreferences *)sharedInstance;
++ (CortitoPreferencesModule *)sharedInstance;
 
-- (NSImage *)imageForPreferenceNamed:(id)sender;
-- (id)viewForPreferenceNamed:(id)sender;
+- (NSImage *)imageForPreferenceNamed:(NSString *)sender;
+- (NSView *)viewForPreferenceNamed:(NSString *)sender;
 - (BOOL)moduleCanBeRemoved;
 - (void)initializeFromDefaults;
 - (void)willBeDisplayed;
 - (void)moduleWillBeRemoved;
+- (BOOL)hasChangesPending;
+- (NSSize)minSize;
+- (BOOL)isResizable;
+- (void)saveChanges;
+- (BOOL)preferencesWindowShouldClose;
 
 @end
 

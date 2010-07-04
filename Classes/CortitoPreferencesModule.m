@@ -7,10 +7,10 @@
 //
 
 #import <objc/runtime.h>
-#import "CortitoPreferences.h"
+#import "CortitoPreferencesModule.h"
 
 
-@implementation CortitoPreferences
+@implementation CortitoPreferencesModule
 
 + (void)install
 {
@@ -38,24 +38,33 @@
   return @"Cortito";
 }
 
-+ (CortitoPreferences *)sharedInstance
++ (CortitoPreferencesModule *)sharedInstance
 {
-  static CortitoPreferences * instance;
+  static CortitoPreferencesModule * instance;
   if(!instance) {
-    instance = [[CortitoPreferences alloc] init];
+    instance = [[[self class] alloc] init];
   }
   return instance;
 }
 
-- (NSImage *)imageForPreferenceNamed:(id)sender
+- (id) init
 {
-  NSLog(@"%@", sender);
+  self = [super init];
+  if (self != nil) {
+    [NSBundle loadNibNamed:@"PreferenceView" owner:self];
+  }
+  return self;
+}
+
+
+- (NSImage *)imageForPreferenceNamed:(NSString *)sender
+{
   return [NSImage imageNamed:@"AdvancedPreferences.tiff"];
 }
 
-- (id)viewForPreferenceNamed:(id)sender
+- (NSView *)viewForPreferenceNamed:(NSString *)sender
 {
-  return [[NSView new] autorelease];
+  return prefview;
 }
 
 - (BOOL)moduleCanBeRemoved
@@ -65,7 +74,9 @@
 
 - (void)initializeFromDefaults
 {
-  
+  if(serviceTextField) {
+    [serviceTextField setStringValue:@"http://localhost:3000/"];
+  }
 }
 
 - (void)willBeDisplayed
@@ -76,6 +87,31 @@
 - (void)moduleWillBeRemoved
 {
   
+}
+
+- (BOOL)hasChangesPending
+{
+  return YES;
+}
+
+- (void)saveChanges
+{
+  NSLog(@"Save Changes");
+}
+
+- (NSSize)minSize
+{
+  return NSSizeFromCGSize(CGSizeMake(668.0, 150.0));
+}
+
+- (BOOL)isResizable
+{
+  return NO;
+}
+
+- (BOOL)preferencesWindowShouldClose
+{
+  return YES;
 }
 
 @end
@@ -94,8 +130,8 @@
   if (preferences && !added) {
     added = YES;
     [preferences performSelector:@selector(addPreferenceNamed:owner:) 
-                      withObject:[CortitoPreferences preferencesPanelName]
-                      withObject:[CortitoPreferences sharedInstance]];
+                      withObject:[CortitoPreferencesModule preferencesPanelName]
+                      withObject:[CortitoPreferencesModule sharedInstance]];
   }
   
   return preferences;

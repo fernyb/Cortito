@@ -8,7 +8,7 @@
 
 #import "CortitoPlugin.h"
 #import "CortitoService.h"
-#import "CortitoPreferences.h"
+#import "CortitoPreferencesModule.h"
 
 
 @implementation CortitoPlugin
@@ -18,7 +18,7 @@
   CortitoPlugin * plugin = [[self class] sharedInstance];
   [plugin installMenu];
   [plugin registerNotifications];
-  [CortitoPreferences install];
+  [CortitoPreferencesModule install];
 }
 
 
