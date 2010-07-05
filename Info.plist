@@ -36,7 +36,7 @@
 		</dict>
 	</array>
 	<key>SUFeedURL</key>
-	<string>http://localhost:3000/app/cortito_appcast.xml</string>
+	<string>http://fernyb.net/app/cortito_appcast.xml</string>
 	<key>SUEnableAutomaticChecks</key>
 	<string>YES</string>
 </dict>
