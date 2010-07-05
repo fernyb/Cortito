@@ -75,22 +75,28 @@
 
 - (void)checkForUpdates:(id)sender
 {
+  NSLog(@"Check For Updates");
   SUUpdater * sparkle = [SUUpdater updaterForBundle:[NSBundle bundleForClass:[self class]]];
+  [sparkle setUpdateCheckInterval:2.0];
+  [sparkle setAutomaticallyChecksForUpdates:YES];
   [sparkle resetUpdateCycle];
+}
+
+- (NSMenuItem *)createShortURLMenuItem
+{
+  NSMenuItem * menuItem = [[NSApp mainMenu] itemWithTag:CORTITO_MENU_ITEM_TAG];
+  NSMenuItem * subMenuItem = [[menuItem submenu] itemAtIndex:0];
+  return subMenuItem;
 }
 
 - (void)disableCreateShortURL
 {
-  NSMenuItem * menuItem = [[NSApp mainMenu] itemWithTag:CORTITO_MENU_ITEM_TAG];
-  NSMenuItem * subMenuItem = [[menuItem submenu] itemAtIndex:0];
-  [subMenuItem setEnabled:NO];
+  [[self createShortURLMenuItem] setEnabled:NO];
 }
 
 - (void)enableCreateShortURL
 {
-  NSMenuItem * menuItem = [[NSApp mainMenu] itemWithTag:CORTITO_MENU_ITEM_TAG];
-  NSMenuItem * subMenuItem = [[menuItem submenu] itemAtIndex:0];
-  [subMenuItem setEnabled:YES];
+  [[self createShortURLMenuItem] setEnabled:YES];
 }
 
 - (void)createShortURL:(id)sender

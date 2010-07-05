@@ -18,6 +18,7 @@
 + (CortitoPlugin *)sharedInstance;
 - (void)installMenu;
 - (void)checkForUpdates:(id)sender;
+- (NSMenuItem *)createShortURLMenuItem;
 - (void)disableCreateShortURL;
 - (void)enableCreateShortURL;
 - (void)registerNotifications;

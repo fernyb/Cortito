@@ -137,7 +137,6 @@
   [super dealloc];
 }
 
-
 @end
 
 @implementation NSObject (CortitoPreferencesMethods)

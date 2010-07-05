@@ -1,5 +1,5 @@
 .DS_Store
-build
 build/*
 Cortito.xcodeproj/*.mode1v3
 Cortito.xcodeproj/*.pbxuser
+ready_for_upload

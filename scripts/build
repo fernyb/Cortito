@@ -1,0 +1,112 @@
+#!/usr/bin/env ruby
+require "rubygems"
+require "plist"
+require "erubis"
+require "uri"
+require "nokogiri"
+
+
+puts `xcodebuild -target Cortito -configuration Release`
+
+release_build = "build/Release/Cortito.bundle"
+
+result = Plist::parse_xml("#{release_build}/Contents/Info.plist")
+
+#
+# http://developer.apple.com/mac/library/documentation/Cocoa/Conceptual/ObjCTutorial/08Configuring/08Configuring.html
+#
+# CFBundleVersion should be the build number, revision build. (ex. 100)
+# CFBundleShortVersionString is the Release number, Human Readable (ex. 1.5.0)
+#
+CFBundleVersion = result['CFBundleVersion']
+CFBundleShortVersionString = result['CFBundleShortVersionString']
+CFBundleName = result['CFBundleName']
+
+AppCastURL = result['SUFeedURL']
+
+uri = URI.parse(AppCastURL)
+
+AppHost = "#{uri.scheme}://#{uri.host}"
+AppHost << ":#{uri.port}" unless uri.port == 80
+
+AppDownloadHost = "#{AppHost}/app"
+
+release_zip = "#{CFBundleName}-#{CFBundleShortVersionString}.zip"
+puts `cd build/Release; ditto -c -k --keepParent -rsrc #{CFBundleName}.bundle #{release_zip}`
+
+if File.exists?("build/Release/#{release_zip}")
+  puts `mv build/Release/#{release_zip} build/#{release_zip}`
+else
+  exit
+end
+
+#
+# Sign the update
+#
+user = `whoami`.strip
+path_to_private_key = "/Users/#{user}/keys/dsa_priv.pem"
+unless File.exists?(path_to_private_key)
+  puts "A private key is required. (#{path_to_private_key})"
+  puts "Please read: http://sparkle.andymatuschak.org/documentation/pmwiki.php/Documentation/PublishingAnUpdate"
+  exit
+end
+
+signature_key = `scripts/sign_update build/#{release_zip} #{path_to_private_key}`
+signature_key = signature_key.split.join('')
+
+#
+# Generate an the AppCast
+#
+file_size = File.size("build/#{release_zip}")
+release_html_page = "#{CFBundleName}-#{CFBundleShortVersionString}.html"
+
+newItem = %Q{
+  <item>
+    <title>Version #{CFBundleShortVersionString}</title>
+    <sparkle:releaseNotesLink>
+  	  #{AppHost}/release/#{release_html_page}
+    </sparkle:releaseNotesLink>
+    <pubDate>#{Time.now}</pubDate>
+    <enclosure url="#{AppDownloadHost}/#{release_zip}" sparkle:version="#{CFBundleShortVersionString}" sparkle:shortVersionString="#{CFBundleVersion}" sparkle:dsaSignature="#{signature_key}" length="#{file_size}" type="application/octet-stream" />
+  </item>
+}
+
+#
+# Remove duplicates
+#
+items = File.open("appcast/item.xml", "r"){|f| f.read }
+doc = Nokogiri::XML.parse("<channel>#{items}</channel>")
+filteredItems = doc.css("item").select {|item| item.css("enclosure").attr("version").to_s != CFBundleShortVersionString.to_s }
+
+filteredItems << newItem
+newItem = filteredItems.join("")
+
+
+#
+# Append a new item
+#
+File.open("appcast/item.xml", "w"){|f| f.write(newItem) }
+items = File.open("appcast/item.xml", "r"){|f| f.read }
+
+template = File.open("appcast/template.erb.xml") {|f| f.read }
+template = Erubis::Eruby.new(template)
+xml = template.result({
+  :name         => CFBundleName,
+  :link         => AppCastURL,
+  :render_items => items
+})
+
+appcast_name = "#{CFBundleName.downcase}_appcast.xml"
+appcast_path = "appcast/#{appcast_name}"
+File.open(appcast_path, "a") {|f| f.write(xml) }
+
+#
+# Ready for Upload
+#
+`mkdir ready_for_upload` unless File.exists?("ready_for_upload")
+`mv #{appcast_path} ready_for_upload/#{appcast_name}`
+`mv build/#{release_zip} ready_for_upload/#{release_zip}`
+
+File.open("ready_for_upload/#{release_html_page.downcase}", "a") {|f| f.write("Release Notes Go Here...") }
+
+puts "Ready for upload...."

@@ -1,0 +1,9 @@
+
+  <item>
+    <title>Version 1.0</title>
+    <sparkle:releaseNotesLink>
+  	  http://localhost:3000/release/Cortito-1.0.html
+    </sparkle:releaseNotesLink>
+    <pubDate>Mon Jul 05 01:11:54 -0700 2010</pubDate>
+    <enclosure url="http://localhost:3000/app/Cortito-1.0.zip" sparkle:version="1.0" sparkle:shortVersionString="1" sparkle:dsaSignature="MCwCFGVSFDJE6vjvAgnabwxngozHrFQ4AhRqsmoIQa57cgNdcKZJmQg8yVJJ7w==" length="664039" type="application/octet-stream" />
+  </item>
