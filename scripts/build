@@ -29,7 +29,9 @@ uri = URI.parse(AppCastURL)
 AppHost = "#{uri.scheme}://#{uri.host}"
 AppHost << ":#{uri.port}" unless uri.port == 80
 
-AppDownloadHost = "#{AppHost}/app"
+# http://github.com/downloads/fernyb/Cortito/Cortito-1.0.zip
+AppDownloadHost = "http://github.com/downloads/fernyb/Cortito"
+
 
 release_zip = "#{CFBundleName}-#{CFBundleShortVersionString}.zip"
 puts `cd build/Release; ditto -c -k --keepParent -rsrc #{CFBundleName}.bundle #{release_zip}`
