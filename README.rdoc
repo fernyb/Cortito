@@ -1,9 +1,9 @@
-h1. Cortito
+= Cortito
 
 Cortito creates really fast short URLs from Safari.
 
 
-h2. Installation
+== Installation
 
 Make sure you have SIMBL installed. 
 
@@ -13,9 +13,11 @@ Download SIMBL from here:
     
     http://www.culater.net/software/SIMBL/SIMBL.php
 
+
 Once you have SIMBL installed you can go ahead and install Cortito Plugin by copying it to:
     
     ~/Library/Application Support/SIMBL/Plugins
+
 
 If the directory does not exist you will need to create it.
     
