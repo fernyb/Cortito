@@ -1,6 +1,6 @@
 h1. Cortito
 
-Cortito create really fast short URLs from Safari.
+Cortito creates really fast short URLs from Safari.
 
 
 h2. Installation
