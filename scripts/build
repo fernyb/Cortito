@@ -59,15 +59,17 @@ signature_key = signature_key.split.join('')
 #
 file_size = File.size("build/#{release_zip}")
 release_html_page = "#{CFBundleName}-#{CFBundleShortVersionString}.html"
+release_html_page_path = " #{AppHost}/app/#{release_html_page}"
 
 newItem = %Q{
   <item>
     <title>Version #{CFBundleShortVersionString}</title>
     <sparkle:releaseNotesLink>
-  	  #{AppHost}/release/#{release_html_page}
+  	  #{release_html_page_path}
     </sparkle:releaseNotesLink>
     <pubDate>#{Time.now}</pubDate>
-    <enclosure url="#{AppDownloadHost}/#{release_zip}" sparkle:version="#{CFBundleShortVersionString}" sparkle:shortVersionString="#{CFBundleVersion}" sparkle:dsaSignature="#{signature_key}" length="#{file_size}" type="application/octet-stream" />
+    <sparkle:minimumSystemVersion>10.6</sparkle:minimumSystemVersion>
+    <enclosure url="#{AppDownloadHost}/#{release_zip}" sparkle:version="#{CFBundleVersion}" sparkle:shortVersionString="#{CFBundleShortVersionString}" sparkle:dsaSignature="#{signature_key}" length="#{file_size}" type="application/octet-stream" />
   </item>
 }
 
