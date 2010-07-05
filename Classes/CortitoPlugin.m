@@ -65,17 +65,17 @@
   [newMenu addItem:newItem];
   [newItem release];
   
+  [newMenu addItem:[NSMenuItem separatorItem]];
+  
   newItem = [[NSMenuItem allocWithZone:[NSMenu menuZone]] initWithTitle:@"Check For Updates" action:NULL keyEquivalent:@""];
   [newItem setTarget:self];
   [newItem setAction:@selector(checkForUpdates:)];
   [newMenu addItem:newItem];
-  
   [newItem release];
 }
 
 - (void)checkForUpdates:(id)sender
 {
-  NSLog(@"Check For Updates");
   SUUpdater * sparkle = [SUUpdater updaterForBundle:[NSBundle bundleForClass:[self class]]];
   [sparkle setUpdateCheckInterval:2.0];
   [sparkle setAutomaticallyChecksForUpdates:YES];
