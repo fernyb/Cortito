@@ -18,6 +18,7 @@
 + (CortitoPlugin *)sharedInstance;
 - (void)installMenu;
 - (void)checkForUpdates:(id)sender;
+- (NSString*)pathToRelaunchForUpdater:(SUUpdater*)updater;
 - (NSMenuItem *)createShortURLMenuItem;
 - (void)disableCreateShortURL;
 - (void)enableCreateShortURL;

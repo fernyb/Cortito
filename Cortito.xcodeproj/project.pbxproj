@@ -13,6 +13,7 @@
 		C45D793211E0F3FB00C9CBA4 /* cortito.png in Resources */ = {isa = PBXBuildFile; fileRef = C45D793111E0F3FB00C9CBA4 /* cortito.png */; };
 		C45D79F211E1171100C9CBA4 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C45D79F111E1171100C9CBA4 /* Sparkle.framework */; };
 		C45D79FF11E1174500C9CBA4 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = C45D79F111E1171100C9CBA4 /* Sparkle.framework */; };
+		C4B6823611E254EE0038ECE6 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = C4B6823511E254EE0038ECE6 /* dsa_pub.pem */; };
 		C4C4197D11E03E9A00EB62B2 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C4196D11E03E9A00EB62B2 /* ASIDownloadCache.m */; };
 		C4C4197E11E03E9A00EB62B2 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C4196F11E03E9A00EB62B2 /* ASIFormDataRequest.m */; };
 		C4C4197F11E03E9A00EB62B2 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C4197111E03E9A00EB62B2 /* ASIHTTPRequest.m */; };
@@ -49,6 +50,7 @@
 		C45D791811E0E66200C9CBA4 /* PreferenceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreferenceView.xib; sourceTree = "<group>"; };
 		C45D793111E0F3FB00C9CBA4 /* cortito.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cortito.png; sourceTree = "<group>"; };
 		C45D79F111E1171100C9CBA4 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
+		C4B6823511E254EE0038ECE6 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = keys/dsa_pub.pem; sourceTree = "<group>"; };
 		C4C4196B11E03E9A00EB62B2 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
 		C4C4196C11E03E9A00EB62B2 /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDownloadCache.h; sourceTree = "<group>"; };
 		C4C4196D11E03E9A00EB62B2 /* ASIDownloadCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDownloadCache.m; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C4B6823511E254EE0038ECE6 /* dsa_pub.pem */,
 				C45D791711E0E66200C9CBA4 /* views */,
 				C4C41AA511E0685C00EB62B2 /* images */,
 				C4C419EB11E0544200EB62B2 /* sounds */,
@@ -261,6 +264,7 @@
 				C4C419ED11E0544200EB62B2 /* Glass.aiff in Resources */,
 				C45D791911E0E66200C9CBA4 /* PreferenceView.xib in Resources */,
 				C45D793211E0F3FB00C9CBA4 /* cortito.png in Resources */,
+				C4B6823611E254EE0038ECE6 /* dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

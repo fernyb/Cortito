@@ -39,5 +39,11 @@
 	<string>http://fernyb.net/app/cortito_appcast.xml</string>
 	<key>SUEnableAutomaticChecks</key>
 	<string>YES</string>
+	<key>SUShowReleaseNotes</key>
+	<string>NO</string>
+	<key>SUAllowsAutomaticUpdates</key>
+	<string>YES</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>dsa_pub.pem</string>
 </dict>
 </plist>

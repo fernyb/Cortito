@@ -77,9 +77,13 @@
 - (void)checkForUpdates:(id)sender
 {
   SUUpdater * sparkle = [SUUpdater updaterForBundle:[NSBundle bundleForClass:[self class]]];
-  [sparkle setUpdateCheckInterval:2.0];
-  [sparkle setAutomaticallyChecksForUpdates:YES];
+  [sparkle setDelegate:self];
   [sparkle resetUpdateCycle];
+}
+
+- (NSString*)pathToRelaunchForUpdater:(SUUpdater*)updater 
+{ 
+  return [[NSBundle mainBundle] bundlePath];
 }
 
 - (NSMenuItem *)createShortURLMenuItem

@@ -51,7 +51,8 @@ unless File.exists?(path_to_private_key)
   exit
 end
 
-signature_key = `scripts/sign_update build/#{release_zip} #{path_to_private_key}`
+signcommand = "scripts/sign_update build/#{release_zip} #{path_to_private_key}"
+signature_key = `#{signcommand}`
 signature_key = signature_key.split.join('')
 
 #
@@ -59,18 +60,19 @@ signature_key = signature_key.split.join('')
 #
 file_size = File.size("build/#{release_zip}")
 release_html_page = "#{CFBundleName}-#{CFBundleShortVersionString}.html"
-release_html_page_path = " #{AppHost}/app/#{release_html_page}"
+release_html_page.downcase!
+release_html_page_path = "#{AppHost}/app/#{release_html_page}"
+content_type = "application/x-zip-compressed"
 
 newItem = %Q{
-  <item>
-    <title>Version #{CFBundleShortVersionString}</title>
-    <sparkle:releaseNotesLink>
-  	  #{release_html_page_path}
-    </sparkle:releaseNotesLink>
-    <pubDate>#{Time.now}</pubDate>
-    <sparkle:minimumSystemVersion>10.6</sparkle:minimumSystemVersion>
-    <enclosure url="#{AppDownloadHost}/#{release_zip}" sparkle:version="#{CFBundleVersion}" sparkle:shortVersionString="#{CFBundleShortVersionString}" sparkle:dsaSignature="#{signature_key}" length="#{file_size}" type="application/octet-stream" />
-  </item>
+<item>
+  <title>Version #{CFBundleShortVersionString}</title>
+  <sparkle:minimumSystemVersion>10.6</sparkle:minimumSystemVersion>
+  <sparkle:releaseNotesLink>#{release_html_page_path}</sparkle:releaseNotesLink>
+  <pubDate>#{Time.now}</pubDate>
+  <enclosure url="#{AppDownloadHost}/#{release_zip}" sparkle:version="#{CFBundleVersion}" sparkle:shortVersionString="#{CFBundleShortVersionString}" sparkle:dsaSignature="#{signature_key}" length="#{file_size}" type="#{content_type}" />
+</item>
+
 }
 
 #
@@ -78,9 +80,26 @@ newItem = %Q{
 #
 items = File.open("appcast/item.xml", "r"){|f| f.read }
 doc = Nokogiri::XML.parse("<channel>#{items}</channel>")
-filteredItems = doc.css("item").select {|item| item.css("enclosure").attr("version").to_s != CFBundleShortVersionString.to_s }
+filteredItems = doc.css("item").select {|item| item.css("enclosure").attr("shortVersionString").to_s != CFBundleShortVersionString.to_s }
+
+# Rebuild Items because it strips out the sparkle attributes
+# If that happens Sparkles throws a cannot parse error
+
+filteredItems = filteredItems.collect do |fitem|
+  fitem_enclosure = fitem.css("enclosure")
+%Q{
+<item>
+  <title>#{fitem.css("title").inner_text}</title>
+  <sparkle:minimumSystemVersion>#{fitem.css("minimumSystemVersion").inner_text}</sparkle:minimumSystemVersion>
+  <sparkle:releaseNotesLink>#{fitem.css("releaseNotesLink").inner_text}</sparkle:releaseNotesLink>
+  <pubDate>#{fitem.css("pubDate").inner_text}</pubDate>
+  <enclosure url="#{fitem_enclosure.attr('url')}" sparkle:version="#{fitem_enclosure.attr('version')}" sparkle:shortVersionString="#{fitem_enclosure.attr('shortVersionString')}" sparkle:dsaSignature="#{fitem_enclosure.attr('dsaSignature')}" length="#{fitem_enclosure.attr('length')}" type="#{fitem_enclosure.attr('type')}" />
+</item>
+}
+end
 
 filteredItems << newItem
+
 newItem = filteredItems.join("")
 
 
@@ -109,6 +128,10 @@ File.open(appcast_path, "a") {|f| f.write(xml) }
 `mv #{appcast_path} ready_for_upload/#{appcast_name}`
 `mv build/#{release_zip} ready_for_upload/#{release_zip}`
 
-File.open("ready_for_upload/#{release_html_page.downcase}", "a") {|f| f.write("Release Notes Go Here...") }
+File.open("ready_for_upload/#{release_html_page}", "a") do |f| 
+  f.write("\n<br />\nRelease Notes Go Here...")
+end
 
 puts "Ready for upload...."
+puts "Don't forget to write the release notes!"
+`mate ready_for_upload/#{release_html_page.downcase}`
