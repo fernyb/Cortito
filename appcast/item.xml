@@ -1,0 +1,9 @@
+
+<item>
+  <title>Version 1.0</title>
+  <sparkle:minimumSystemVersion>10.6</sparkle:minimumSystemVersion>
+  <sparkle:releaseNotesLink>http://fernyb.net/app/cortito-1.0.html</sparkle:releaseNotesLink>
+  <pubDate>Mon Jul 05 12:39:55 -0700 2010</pubDate>
+  <enclosure url="http://fernyb.net/app/Cortito-1.0.zip" sparkle:version="1" sparkle:shortVersionString="1.0" sparkle:dsaSignature="MC0CFHWL0ikW+77Ey3m8FXPhbwLb602lAhUAhaE1S9aozRLD26llaG1zAOtbfFg=" length="665702" type="application/x-zip-compressed" />
+</item>
+
